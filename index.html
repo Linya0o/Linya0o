@@ -27,19 +27,37 @@
 </head>
 <body>
     <div class="typewriter">
-        <p id="text">韦金矿24K纯帅</p>
+        <font color="red"><p id="text"></p></font>
     </div>
 
     <script>
-        const text = "这是一个打字机效果的演示文本。";
+        const text = "韦金矿24K纯帅";
         let i = 0;
+        let forward = true;
         const speed = 100; // 打字速度，单位：毫秒
+        const delay = 1000; // 完整显示后和删除前的停顿时间
 
         function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("text").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
+            const element = document.getElementById("text");
+
+            if (forward) {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    forward = false;
+                    setTimeout(typeWriter, delay); // 停顿后开始删除
+                }
+            } else {
+                if (i > 0) {
+                    element.innerHTML = text.substring(0, i - 1);
+                    i--;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    forward = true;
+                    setTimeout(typeWriter, delay); // 停顿后重新开始打印
+                }
             }
         }
 
