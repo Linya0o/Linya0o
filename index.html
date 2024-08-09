@@ -1,7 +1,51 @@
-<html>
-  <body>
-    <h1>
-      <font color="red">韦金矿24K纯帅</font>
-    </h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打字机效果</title>
+    <style>
+        .typewriter p {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid;
+            display: inline-block;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="typewriter">
+        <p id="text">韦金矿24K纯帅</p>
+    </div>
+
+    <script>
+        const text = "这是一个打字机效果的演示文本。";
+        let i = 0;
+        const speed = 100; // 打字速度，单位：毫秒
+
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        window.onload = function() {
+            typeWriter();
+        };
+    </script>
+</body>
 </html>
